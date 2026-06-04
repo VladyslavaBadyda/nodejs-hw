@@ -26,8 +26,4 @@ export const updateUserAvatar = async (req, res) => {
   res.status(200).json({
     url: user.avatar,
   });
-
-  res.status(200).json({
-    url: result.secure_url,
-  });
 };
