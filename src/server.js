@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import userRouter from './routes/userRoutes.js';
 
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { logger } from './middleware/logger.js';
@@ -10,6 +11,7 @@ import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import notesRoutes from './routes/notesRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+
 
 dotenv.config();
 
@@ -30,6 +32,7 @@ app.use('/notes', notesRoutes);
 app.use(notFoundHandler);
 app.use(errors());
 app.use(errorHandler);
+app.use('/users', userRouter);
 
 const bootstrap = async () => {
   await connectMongoDB();

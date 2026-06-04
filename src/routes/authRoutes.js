@@ -6,6 +6,10 @@ import {
   loginUser,
   refreshUserSession,
   logoutUser,
+  requestResetEmail,
+  resetPassword,
+  requestResetEmailSchema,
+  resetPasswordSchema,
 } from '../controllers/authController.js';
 
 import {
@@ -32,3 +36,18 @@ router.post('/refresh', refreshUserSession);
 router.post('/logout', logoutUser);
 
 export default router;
+router.post(
+  '/request-reset-email',
+  celebrate({
+    [Segments.BODY]: requestResetEmailSchema,
+  }),
+  requestResetEmail,
+);
+
+router.post(
+  '/reset-password',
+  celebrate({
+    [Segments.BODY]: resetPasswordSchema,
+  }),
+  resetPassword,
+);
